@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 function Searched() {
 
-    const [searchedRecipe, setSearchedRecipes] = useState([]);
+    const [searchedRecipes, setSearchedRecipes] = useState([]);
     let params = useParams();
 
     const getSearched = async (name) => {
         const data = await fetch(
-          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
         );
         const recipes = await data.json(); 
         setSearchedRecipes(recipes.results);
@@ -21,7 +21,7 @@ function Searched() {
 
     return (
       <Grid>
-        {searchedRecipe.map((item) => {
+        {searchedRecipes.map((item) => {
           return (
             <Card key={item.id}>
               <img src={item.image} alt="" />
